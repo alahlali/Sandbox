@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Tracing;
-using System.Fabric;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors.Runtime;
 
@@ -19,7 +15,8 @@ namespace CalculatorActor
             Task.Run(() => { });
         }
 
-        private ActorEventSource() : base() { }
+        private ActorEventSource()
+        { }
 
         #region Keywords
         // Event keywords can be used to categorize events. 
@@ -43,7 +40,7 @@ namespace CalculatorActor
         [NonEvent]
         public void Message(string message, params object[] args)
         {
-            if (this.IsEnabled())
+            if (IsEnabled())
             {
                 string finalMessage = string.Format(message, args);
                 Message(finalMessage);
@@ -54,7 +51,7 @@ namespace CalculatorActor
         [Event(MessageEventId, Level = EventLevel.Informational, Message = "{0}")]
         public void Message(string message)
         {
-            if (this.IsEnabled())
+            if (IsEnabled())
             {
                 WriteEvent(MessageEventId, message);
             }
@@ -63,7 +60,7 @@ namespace CalculatorActor
         [NonEvent]
         public void ActorMessage(Actor actor, string message, params object[] args)
         {
-            if (this.IsEnabled()
+            if (IsEnabled()
                 && actor.Id != null
                 && actor.ActorService != null
                 && actor.ActorService.Context != null

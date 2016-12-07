@@ -7,8 +7,8 @@
     <ProjectGuid>{C0064FCA-6A96-4B6F-B8B1-4030809194DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalculatorActor.Interfaces</RootNamespace>
-    <AssemblyName>CalculatorActor.Interfaces</AssemblyName>
+    <RootNamespace>Sandbox.Interfaces</RootNamespace>
+    <AssemblyName>Sandbox.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>

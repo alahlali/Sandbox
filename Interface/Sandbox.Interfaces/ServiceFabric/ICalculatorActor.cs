@@ -2,7 +2,7 @@
 using Microsoft.ServiceFabric.Actors;
 using Model.Internal;
 
-namespace Sandbox.Interfaces
+namespace Sandbox.Interfaces.ServiceFabric
 {
     public interface ICalculatorActor : IActor
     {

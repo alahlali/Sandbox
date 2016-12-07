@@ -4,6 +4,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>7cbeefd4-6aee-4115-9380-134623fcce11</ProjectGuid>
     <ProjectVersion>1.2</ProjectVersion>
+    <BaseIntermediateOutputPath>$(SolutionDir)\.output\Obj</BaseIntermediateOutputPath>
+    <OutputPath>$(SolutionDir)\.output\Bin</OutputPath>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">

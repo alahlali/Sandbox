@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
-using Sandbox.Interfaces;
 using Model.Internal;
+using Sandbox.Interfaces.ServiceFabric;
 
 namespace CalculatorActor
 {
     [StatePersistence(StatePersistence.Persisted)]
     internal class CalculatorActor : Actor, ICalculatorActor
     {
-        private const string RESULT = "Result";
+        private const string Result = "Result";
 
         public CalculatorActor(ActorService actorService, ActorId actorId)
             : base(actorService, actorId)
@@ -18,14 +18,14 @@ namespace CalculatorActor
 
         public Task DoCalculateAsync()
         {
-            StateManager.TryAddStateAsync(RESULT, new Result(10));
+            StateManager.TryAddStateAsync(Result, new Result(10));
 
             return Task.FromResult(false);
         }
 
         public Task<Result> GetResultAsync()
         {
-            return StateManager.GetStateAsync<Result>(RESULT);
+            return StateManager.GetStateAsync<Result>(Result);
         }
     }
 }
