@@ -1,1 +1,0 @@
-msbuild  Sandbox.sln /p:Configuration=Release;Plateform=x64
