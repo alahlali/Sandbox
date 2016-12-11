@@ -6,7 +6,7 @@ namespace Sandbox.Interfaces.ServiceFabric
 {
     public interface ICalculatorActor : IActor
     {
-        Task DoCalculateAsync();
-        Task<Result> GetResultAsync();
+        Task DoCalculateAsync(TaskRequestMessage message);
+        Task<TaskResponse> GetResultAsync();
     }
 }

@@ -2,7 +2,7 @@
 using System.Threading;
 using Framework;
 
-namespace CalculatorActor
+namespace QueueManagerActor
 {
     internal static class Program
     {
@@ -10,10 +10,10 @@ namespace CalculatorActor
         {
             try
             {
-                ServiceFabricFramework
-                    .CreateActorContainerBuilder<CalculatorActor>()
+                ServiceFabricFramework.CreateActorContainerBuilder<QueueManagerActor>()
+                    .AddBootstrapper(new QueueManagerBootstrapper("QueueConnectionString", "ConnectionString").Bootstrap)
                     .Register();
-
+                
                 Thread.Sleep(Timeout.Infinite);
             }
             catch (Exception e)

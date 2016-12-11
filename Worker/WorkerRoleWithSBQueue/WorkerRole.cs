@@ -5,13 +5,14 @@ using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
+using Model.Internal;
 
 namespace WorkerRoleWithSBQueue
 {
     public class WorkerRole : RoleEntryPoint
     {
         // The name of your queue
-        const string QueueName = "ProcessingQueue";
+        const string QueueName = "WorkerQueue";
 
         // QueueClient is thread-safe. Recommended that you cache 
         // rather than recreating it on every request
@@ -29,6 +30,8 @@ namespace WorkerRoleWithSBQueue
                     {
                         // Process the message
                         Trace.WriteLine("Processing Service Bus message: " + receivedMessage.SequenceNumber.ToString());
+                        var message = receivedMessage.GetBody<TaskRequestMessage>();
+                        Trace.WriteLine("Processing Service Bus message id: " + message.Id);
                     }
                     catch
                     {

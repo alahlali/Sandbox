@@ -3,10 +3,9 @@
 namespace Model.Internal
 {
     [DataContract]
-    public class Result
+    public sealed class Result
     {
-        [DataMember]
-        public int Value;
+        [DataMember] public int Value;
 
         public Result(int value)
         {

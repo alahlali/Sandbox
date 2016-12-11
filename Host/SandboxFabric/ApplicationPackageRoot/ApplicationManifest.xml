@@ -5,10 +5,26 @@
     <Parameter Name="CalculatorActorService_PartitionCount" DefaultValue="10" />
     <Parameter Name="CalculatorActorService_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="CalculatorActorService_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="QueueManagerActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="QueueManagerActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="QueueManagerActorService_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="ConnectionString" DefaultValue="Endpoint=;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="QueueManagerActorPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="QueueConnectionString">
+            <Parameter Name="ConnectionString" Value="[ConnectionString]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="CalculatorActorPkg" ServiceManifestVersion="1.0.0" />
   </ServiceManifestImport>
@@ -30,6 +46,11 @@
     <Service Name="CalculatorActorService" GeneratedIdRef="b808b8e9-4238-4084-a658-58292a96a2f2|Persisted">
       <StatefulService ServiceTypeName="CalculatorActorServiceType" TargetReplicaSetSize="[CalculatorActorService_TargetReplicaSetSize]" MinReplicaSetSize="[CalculatorActorService_MinReplicaSetSize]">
         <UniformInt64Partition PartitionCount="[CalculatorActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="QueueManagerActorService" GeneratedIdRef="7e08bd87-bdc3-4ecb-a8a6-7469867c5a29|Persisted">
+      <StatefulService ServiceTypeName="QueueManagerActorServiceType" TargetReplicaSetSize="[QueueManagerActorService_TargetReplicaSetSize]" MinReplicaSetSize="[QueueManagerActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[QueueManagerActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>
   </DefaultServices>

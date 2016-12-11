@@ -112,6 +112,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Internal\Src\Model.Internal.csproj">
+      <Project>{E349A26D-31B8-46FB-8D15-2F765A556616}</Project>
+      <Name>Model.Internal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

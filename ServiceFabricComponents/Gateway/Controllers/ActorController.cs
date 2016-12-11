@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Sandbox.Interfaces;
 using Microsoft.ServiceFabric.Actors.Client;
 using Microsoft.ServiceFabric.Actors;
 using System;
@@ -9,32 +8,34 @@ using Sandbox.Interfaces.ServiceFabric;
 
 namespace Gateway.Controllers
 {
-    [Route("api")]
-    public class MainController : Controller
+    [Route("actor")]
+    public class ActorController : Controller
     {
         [HttpGet]
         public string Get(int id)
         {
-            return "value";
+            return "Actor Controller";
         }
         
-        [HttpPost("calculate")]
+        [HttpPost("task")]
         public async Task<IActionResult> Post()
         {
             Guid actorId = Guid.NewGuid();
+
             ICalculatorActor calculatorActor = ActorProxy.Create<ICalculatorActor>(new ActorId(actorId));
-            await calculatorActor.DoCalculateAsync();
+
+            await calculatorActor.DoCalculateAsync(new TaskRequestMessage(actorId));
 
             return Ok(new { resultId = actorId });
         }
 
-        [HttpGet("{guid}")]
+        [HttpGet("task/{guid}")]
         public async Task<IActionResult> Get(string guid)
         {
             ICalculatorActor calculatorActor = ActorProxy.Create<ICalculatorActor>(new ActorId(new Guid(guid)));
 
-            Result result = await calculatorActor.GetResultAsync();
-            return Ok(new { result = result.Value });
+            TaskResponse taskResponse = await calculatorActor.GetResultAsync();
+            return Ok(taskResponse);
         }
     }
 }

@@ -45,10 +45,10 @@ namespace Gateway
             string serverUrl = $"{endpoint.Protocol}://{FabricRuntime.GetNodeContext().IPAddressOrFQDN}:{endpoint.Port}";
 
             _webHost = new WebHostBuilder().UseKestrel()
-                                           .UseContentRoot(Directory.GetCurrentDirectory())
-                                           .UseStartup<TStartup>()
-                                           .UseUrls(serverUrl)
-                                           .Build();
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseStartup<TStartup>()
+                .UseUrls(serverUrl)
+                .Build();
 
             _webHost.Start();
 

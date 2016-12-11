@@ -13,7 +13,7 @@ namespace Gateway
         {
             services
                 .AddMvcCore()
-                .AddApplicationPart(typeof(MainController).Assembly)
+                .AddApplicationPart(typeof(ActorController).Assembly)
                 .AddJsonFormatters();
         }
 

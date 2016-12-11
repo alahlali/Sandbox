@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ServiceFabricComponents\CalculatorActor\CalculatorActor.csproj" />
     <ProjectReference Include="..\..\ServiceFabricComponents\Gateway\Gateway.xproj" />
+    <ProjectReference Include="..\..\ServiceFabricComponents\QueueManagerActor\QueueManagerActor.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>

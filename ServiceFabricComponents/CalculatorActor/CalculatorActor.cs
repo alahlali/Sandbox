@@ -9,23 +9,20 @@ namespace CalculatorActor
     [StatePersistence(StatePersistence.Persisted)]
     internal class CalculatorActor : Actor, ICalculatorActor
     {
-        private const string Result = "Result";
+        private const string TaskResponse = "Result";
 
-        public CalculatorActor(ActorService actorService, ActorId actorId)
-            : base(actorService, actorId)
-        {
-        }
+        public CalculatorActor(ActorService actorService, ActorId actorId) : base(actorService, actorId) { }
 
-        public Task DoCalculateAsync()
+        public Task DoCalculateAsync(TaskRequestMessage message)
         {
-            StateManager.TryAddStateAsync(Result, new Result(10));
+            StateManager.TryAddStateAsync(TaskResponse, new TaskResponse(message.Id.ToString(), true, new Result(10)));
 
             return Task.FromResult(false);
         }
 
-        public Task<Result> GetResultAsync()
+        public Task<TaskResponse> GetResultAsync()
         {
-            return StateManager.GetStateAsync<Result>(Result);
+            return StateManager.GetStateAsync<TaskResponse>(TaskResponse);
         }
     }
 }
