@@ -1,15 +1,16 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Model.Internal
 {
     [DataContract]
     public sealed class TaskResponse
     {
-        [DataMember] public string Id;
+        [DataMember] public Guid Id;
         [DataMember] public bool IsSuccess;
         [DataMember] public Result Result;
 
-        public TaskResponse(string id, bool isSuccess, Result result)
+        public TaskResponse(Guid id, bool isSuccess, Result result)
         {
             Id = id;
             IsSuccess = isSuccess;

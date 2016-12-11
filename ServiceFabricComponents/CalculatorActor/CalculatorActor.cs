@@ -15,7 +15,7 @@ namespace CalculatorActor
 
         public Task DoCalculateAsync(TaskRequestMessage message)
         {
-            StateManager.TryAddStateAsync(TaskResponse, new TaskResponse(message.Id.ToString(), true, new Result(10)));
+            StateManager.TryAddStateAsync(TaskResponse, new TaskResponse(message.Id, true, new Result(10)));
 
             return Task.FromResult(false);
         }

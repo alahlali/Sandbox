@@ -6,5 +6,6 @@ namespace Azure.Storage
     public interface IQueueWrapper
     {
         Task EnqueueTaskMessageAsync(BrokeredMessage message);
+        QueueClient GetQueueClient();
     }
 }

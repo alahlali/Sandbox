@@ -51,6 +51,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
       <Private>True</Private>
@@ -106,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerLogic.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +118,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Azure.Storage\Azure.Storage.csproj">
+      <Project>{8CB3BA54-8F6C-4D88-8E47-000E03AEF952}</Project>
+      <Name>Azure.Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface\Sandbox.Interfaces\Sandbox.Interfaces.csproj">
+      <Project>{C0064FCA-6A96-4B6F-B8B1-4030809194DB}</Project>
+      <Name>Sandbox.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Model\Internal\Src\Model.Internal.csproj">
       <Project>{E349A26D-31B8-46FB-8D15-2F765A556616}</Project>
       <Name>Model.Internal</Name>
