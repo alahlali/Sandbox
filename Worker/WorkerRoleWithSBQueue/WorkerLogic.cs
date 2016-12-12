@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Azure.Storage;
 using Microsoft.ServiceBus.Messaging;
@@ -10,10 +11,12 @@ namespace WorkerRoleWithSBQueue
     internal class WorkerLogic : IWorkerLogic
     {
         private readonly QueueClient _client;
+        private readonly IStorageWrapper _storageWrapper;
 
-        public WorkerLogic(IQueueWrapper queueWrapper)
+        public WorkerLogic(IQueueWrapper queueWrapper, IStorageWrapper storageWrapper)
         {
             _client = queueWrapper.GetQueueClient();
+            _storageWrapper = storageWrapper;
         }
 
         public Task<TaskResponse> DoWorkAsync(TaskRequestMessage request)
@@ -27,18 +30,15 @@ namespace WorkerRoleWithSBQueue
             {
                 try
                 {
-                    // Process the message
                     Trace.WriteLine("Processing Service Bus message: " + receivedMessage.SequenceNumber.ToString());
-                    await DoWorkAsync(receivedMessage.GetBody<TaskRequestMessage>());
-
+                    var result = await DoWorkAsync(receivedMessage.GetBody<TaskRequestMessage>());
+                    await _storageWrapper.PutDataAsync(result, "taskresult", result.Id);
                 }
                 catch
                 {
                     Trace.WriteLine("Could not process message: " + receivedMessage.SequenceNumber.ToString());
                 }
             });
-
-            //_completedEvent.WaitOne();
         }
 
         public void CloseBusConnection()

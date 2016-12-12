@@ -42,6 +42,10 @@ namespace WorkerRoleWithSBQueue
                 .WithParameter("connectionString", CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString"))
                 .As<IQueueWrapper>();
 
+            containerBuilder.RegisterType<StorageWrapper>()
+                .WithParameter("connectionString", CloudConfigurationManager.GetSetting("Microsoft.Storage.ConnectionString"))
+                .As<IStorageWrapper>();
+
             containerBuilder.RegisterType<WorkerLogic>().As<IWorkerLogic>();
 
             var container = containerBuilder.Build();

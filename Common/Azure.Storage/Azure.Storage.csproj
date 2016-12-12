@@ -34,6 +34,10 @@
       <HintPath>..\..\packages\WindowsAzure.ServiceBus.3.1.5\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Worker\WorkerRoleWithSBQueue\bin\Debug\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -47,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IQueueWrapper.cs" />
+    <Compile Include="IStorageWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueWrapper.cs" />
+    <Compile Include="StorageWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

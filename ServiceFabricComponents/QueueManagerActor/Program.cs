@@ -11,7 +11,7 @@ namespace QueueManagerActor
             try
             {
                 ServiceFabricFramework.CreateActorContainerBuilder<QueueManagerActor>()
-                    .AddBootstrapper(new QueueManagerBootstrapper("QueueConnectionString", "ConnectionString").Bootstrap)
+                    .AddBootstrapper(new AzureBootstrapper().Bootstrap)
                     .Register();
                 
                 Thread.Sleep(Timeout.Infinite);

@@ -8,7 +8,8 @@
     <Parameter Name="QueueManagerActorService_PartitionCount" DefaultValue="10" />
     <Parameter Name="QueueManagerActorService_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="QueueManagerActorService_TargetReplicaSetSize" DefaultValue="3" />
-    <Parameter Name="ConnectionString" DefaultValue="Endpoint=;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=" />
+    <Parameter Name="QueueConnectionString" DefaultValue="Endpoint=;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=" />
+    <Parameter Name="StorageConnectionString" DefaultValue="Endpoint=;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
@@ -19,7 +20,10 @@
       <ConfigOverride Name="Config">
         <Settings>
           <Section Name="QueueConnectionString">
-            <Parameter Name="ConnectionString" Value="[ConnectionString]" />
+            <Parameter Name="ConnectionString" Value="[QueueConnectionString]" />
+          </Section>
+          <Section Name="StorageConnectionString">
+            <Parameter Name="ConnectionString" Value="[StorageConnectionString]" />
           </Section>
         </Settings>
       </ConfigOverride>

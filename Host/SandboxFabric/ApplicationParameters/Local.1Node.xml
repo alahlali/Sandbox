@@ -8,6 +8,7 @@
     <Parameter Name="QueueManagerActorService_PartitionCount" Value="1" />
     <Parameter Name="QueueManagerActorService_TargetReplicaSetSize" Value="1" />
     <Parameter Name="QueueManagerActorService_MinReplicaSetSize" Value="1" />
-    <Parameter Name="ConnectionString" Value="Endpoint=sb://anassqueue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=moSYdDSDbKEna7PCp6qGW3IE0+Wn84aueStBpdHbvmI=" />
+    <Parameter Name="QueueConnectionString" Value="Endpoint=sb://anassqueue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=moSYdDSDbKEna7PCp6qGW3IE0+Wn84aueStBpdHbvmI=" />
+    <Parameter Name="StorageConnectionString" Value="DefaultEndpointsProtocol=https;AccountName=anassstorage;AccountKey=ZUS0S/eqXrH6bX3DpcL2iJcgsNFf1WqJww2M9VtmR8SMuwi5pKfajuGpmBPDJwW+PejG6ZExn5b0M+jriltEVA==;" />
   </Parameters>
 </Application>

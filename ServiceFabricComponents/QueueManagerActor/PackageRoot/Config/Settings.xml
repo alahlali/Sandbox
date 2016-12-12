@@ -10,5 +10,8 @@
   <Section Name="QueueConnectionString">
     <Parameter Name="ConnectionString" Value="" />
   </Section>
+  <Section Name="StorageConnectionString">
+    <Parameter Name="ConnectionString" Value="" />
+  </Section>
   <!-- The content will be generated during build -->
 </Settings>

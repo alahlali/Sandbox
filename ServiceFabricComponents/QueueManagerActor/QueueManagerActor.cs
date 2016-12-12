@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Azure.Storage;
 using Microsoft.ServiceBus.Messaging;
 using Microsoft.ServiceFabric.Actors;
@@ -12,11 +13,13 @@ namespace QueueManagerActor
     internal class QueueManagerActor : Actor, IQueueManagerActor
     {
         private readonly IQueueWrapper _queueWrapper;
+        private readonly IStorageWrapper _storageWrapper;
 
-        public QueueManagerActor(ActorService actorService, ActorId actorId, IQueueWrapper queueWrapper)
+        public QueueManagerActor(ActorService actorService, ActorId actorId, IQueueWrapper queueWrapper, IStorageWrapper storageWrapper)
             : base(actorService, actorId)
         {
             _queueWrapper = queueWrapper;
+            _storageWrapper = storageWrapper;
         }
 
         public async Task EnqueueWorkerTaskMessageAsync(TaskRequestMessage requetsMessage)
@@ -28,7 +31,8 @@ namespace QueueManagerActor
 
         public Task<TaskResponse> GetWorkerTaskResultAsync(string requestId)
         {
-            throw new System.NotImplementedException();
+            // check if data exists .. ca reste artisanale tout ca .. x) 
+            return _storageWrapper.GetDataAsync<TaskResponse>(new Guid(requestId), "taskresult");
         }
     }
 }
